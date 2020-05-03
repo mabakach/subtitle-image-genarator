@@ -3,6 +3,7 @@ package ch.mabaka.subtitleimagegnarator;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,13 +21,13 @@ public class SubtitleGenarator {
 
 	private File outputFolderPath;
 
-	private int imageWidth = 1980;
+	private int imageWidth;
 
-	private int imageHeight = 1080;
+	private int imageHeight;
 
-	private int subtitleBarHeight = 170;
+	private int subtitleBarHeight;
 
-	private int textStartPositionX = 20;
+	private int textStartPositionX;
 
 	private int textStartPositionY;
 
@@ -37,11 +38,23 @@ public class SubtitleGenarator {
 	private Font subtitleFont = new Font("Arial Rounded", Font.PLAIN, 48);
 
 	private String outputFileNamePrefix = "image_";
+	
+	private RenderingHints renderingHints;
 
-	public SubtitleGenarator(File inputFile, File outputFolderPath) {
+	public SubtitleGenarator(File inputFile, File outputFolderPath, String fontName, int fontSize, int imageWidth, int imageHeight, int subtitleBarHeight) {
 		this.inputFile = inputFile;
 		this.outputFolderPath = outputFolderPath;
+		this.subtitleFont = new Font(fontName, Font.PLAIN, fontSize);
+		this.imageHeight = imageHeight;
+		this.imageWidth = imageWidth;
+		this.subtitleBarHeight = subtitleBarHeight;
+		this.textStartPositionX = imageWidth / 100;
 		this.textStartPositionY = imageHeight - (subtitleBarHeight / 2) + (subtitleFont.getSize() / 2);
+		renderingHints = new RenderingHints(
+	             RenderingHints.KEY_TEXT_ANTIALIASING,
+	             RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		renderingHints.put(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+		renderingHints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
 	}
 
 	public void generateImages() throws FileNotFoundException, IOException {
@@ -91,6 +104,9 @@ public class SubtitleGenarator {
 
 		// Create a graphics contents on the buffered image
 		Graphics2D g2d = bufferedImage.createGraphics();
+		
+
+		g2d.setRenderingHints(renderingHints);
 
 		// Draw graphics
 		g2d.setColor(subTitleBarBackgroundColor);

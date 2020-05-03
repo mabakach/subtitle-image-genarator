@@ -18,25 +18,40 @@ import org.apache.commons.cli.ParseException;
  *
  */
 public class App {
+	private static final String PARAMETER_INPUT_FILE_PATH = "i";
+	private static final String PARAMETER_OUTPUT_PATH = "o";
+	private static final String PARAMETER_HELP = "h";
+	private static final String PARAMETER_SUBTITLE_BAR_HEIGHT = "sh";
+	private static final String PARAMETER_IMAGE_HEIGTH = "ih";
+	private static final String PARAMETER_IMAGE_WIDTH = "iw";
+	private static final String PARAMETER_FONT_NAME = "fn";
+	private static final String PARAMETER_FONT_SIZE = "fs";
+
 	public static void main(String[] args) throws ParseException, FileNotFoundException, IOException {
 		// create Options object
 		Options options = new Options();
 
-		options.addOption("i", true, "Path to input text file.");
-		options.addOption("o", true, "Path to output folder.");
-		options.addOption("h", false, "Print this help");
+		options.addOption(PARAMETER_INPUT_FILE_PATH, true, "Path to input text file.");
+		options.addOption(PARAMETER_OUTPUT_PATH, true, "Path to output folder.");
+		options.addOption(PARAMETER_FONT_NAME, true, "Font name (optional, default is Arial Rounded)");
+		options.addOption(PARAMETER_FONT_SIZE, true, "Font size in pixel (optional, default is 48)");
+		options.addOption(PARAMETER_IMAGE_WIDTH, true, "Image width in pixel (optional, default is 1980)");
+		options.addOption(PARAMETER_IMAGE_HEIGTH, true, "Image height in pixel (optional, default is 1080)");
+		options.addOption(PARAMETER_SUBTITLE_BAR_HEIGHT, true, "Sub title bar height in pixel (optional, default is 170)");
+		options.addOption(PARAMETER_HELP, false, "Print this help");
 
+		
 		CommandLineParser parser = new DefaultParser();
 		CommandLine cmd = parser.parse(options, args);
 
-		if (cmd.hasOption("h") || !cmd.hasOption("i") || !cmd.hasOption("o")) {
+		if (cmd.hasOption(PARAMETER_HELP) || !cmd.hasOption(PARAMETER_INPUT_FILE_PATH) || !cmd.hasOption(PARAMETER_OUTPUT_PATH)) {
 			printHelp(options);
 			return;
 		}
 
-		String inputFilePath = cmd.getOptionValue("i");
+		String inputFilePath = cmd.getOptionValue(PARAMETER_INPUT_FILE_PATH);
 
-		String outputFolderPath = cmd.getOptionValue("o");
+		String outputFolderPath = cmd.getOptionValue(PARAMETER_OUTPUT_PATH);
 
 		File inputFile = new File(inputFilePath);
 		if (!inputFile.exists()) {
@@ -51,7 +66,58 @@ public class App {
 			}
 		}
 		
-		SubtitleGenarator genarator = new SubtitleGenarator(inputFile, outputFolder);
+		// defaults
+		String fontName = "Arial Rounded";
+		int fontSize = 48;
+		int imageWidth = 1980;
+		int imageHeight = 1080;
+		int subtitleBarHeight = 170;
+		
+		if(cmd.hasOption(PARAMETER_FONT_NAME)) {
+			fontName = cmd.getOptionValue(PARAMETER_FONT_NAME);
+		}
+		
+		if(cmd.hasOption(PARAMETER_FONT_SIZE)) {
+			String optionFs = cmd.getOptionValue(PARAMETER_FONT_SIZE);
+			try {
+				fontSize = Integer.parseInt(optionFs);
+			} catch (NumberFormatException nfe) {
+				System.out.println("Could not parse font size " + fontSize);
+				printHelp(options);
+			}
+		}
+		
+		if(cmd.hasOption(PARAMETER_IMAGE_WIDTH)) {
+			String optionIw = cmd.getOptionValue(PARAMETER_IMAGE_WIDTH);
+			try {
+				imageWidth = Integer.parseInt(optionIw);
+			} catch (NumberFormatException nfe) {
+				System.out.println("Could not parse image width " + imageWidth);
+				printHelp(options);
+			}
+		}
+		
+		if(cmd.hasOption(PARAMETER_IMAGE_HEIGTH)) {
+			String optionIh = cmd.getOptionValue(PARAMETER_IMAGE_HEIGTH);
+			try {
+				imageHeight = Integer.parseInt(optionIh);
+			} catch (NumberFormatException nfe) {
+				System.out.println("Could not parse image height " + imageHeight);
+				printHelp(options);
+			}
+		}
+		
+		if(cmd.hasOption(PARAMETER_SUBTITLE_BAR_HEIGHT)) {
+			String optionSh = cmd.getOptionValue(PARAMETER_SUBTITLE_BAR_HEIGHT);
+			try {
+				subtitleBarHeight = Integer.parseInt(optionSh);
+			} catch (NumberFormatException nfe) {
+				System.out.println("Could not parse sub title bar height " + subtitleBarHeight);
+				printHelp(options);
+			}
+		}
+		
+		SubtitleGenarator genarator = new SubtitleGenarator(inputFile, outputFolder, fontName, fontSize, imageWidth, imageHeight, subtitleBarHeight);
 		genarator.generateImages();
 	}
 
