@@ -12,6 +12,13 @@
 		<developerConnection>scm:git:https://github.com/mabakach/subtitle-image-genarator.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Internal repo</name>
+			<url>file://~/maven-repo</url>
+		</repository>
+	</distributionManagement>
 	<dependencies>
 
 		<dependency>
