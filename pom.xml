@@ -41,11 +41,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.3</version>
+				<version>3.0.0-M1</version>
 			</plugin>
 			<plugin>
-				<!-- NOTE: We don't need a groupId specification because the group is 
-					org.apache.maven.plugins ...which is assumed by default. -->
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.1.0</version>
 				<configuration>
