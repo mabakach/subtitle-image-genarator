@@ -1,4 +1,4 @@
-package ch.mabaka.subtitleimagegnarator;
+package ch.mabaka.subtitleimagegenarator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
