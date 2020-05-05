@@ -13,10 +13,7 @@ import org.apache.commons.cli.ParseException;
 
 /**
  * Main class for subtitle image generator.
- * 
- * @author: Marc Baumgartner
- *
- */
+ */ 
 public class App {
 	private static final String PARAMETER_INPUT_FILE_PATH = "i";
 	private static final String PARAMETER_OUTPUT_PATH = "o";
