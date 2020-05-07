@@ -1,16 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ch.mabaka</groupId>
 	<artifactId>subtitle-image-genarator</artifactId>
 	<packaging>jar</packaging>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 	<name>subtitle-image-genarator</name>
 	<url>http://maven.apache.org</url>
 	<scm>
 		<developerConnection>scm:git:https://github.com/mabakach/subtitle-image-genarator.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>subtitle-image-genarator-1.2</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
@@ -65,8 +63,7 @@
 						</goals>
 						<configuration>
 							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>ch.mabaka.subtitleimagegenarator.App</mainClass>
 								</transformer>
 							</transformers>
