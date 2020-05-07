@@ -13,7 +13,7 @@
 	<distributionManagement>
 		<repository>
 			<uniqueVersion>false</uniqueVersion>
-			<id>local</id>
+			<id>output</id>
 			<name>Corporate Repository</name>
 			<url>file://tmp/maven</url>
 			<layout>default</layout>
