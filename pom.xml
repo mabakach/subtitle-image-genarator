@@ -3,12 +3,12 @@
 	<groupId>ch.mabaka</groupId>
 	<artifactId>subtitle-image-genarator</artifactId>
 	<packaging>jar</packaging>
-	<version>1.7</version>
+	<version>1.8-SNAPSHOT</version>
 	<name>subtitle-image-genarator</name>
 	<url>http://maven.apache.org</url>
 	<scm>
 		<developerConnection>scm:git:https://github.com/mabakach/subtitle-image-genarator.git</developerConnection>
-		<tag>subtitle-image-genarator-1.7</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
