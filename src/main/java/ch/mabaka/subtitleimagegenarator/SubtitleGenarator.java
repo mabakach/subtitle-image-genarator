@@ -68,7 +68,7 @@ public class SubtitleGenarator {
 				while ((line = br.readLine()) != null) {
 					generateImage(line, currentLineNumber, numberOfDigits);
 					currentLineNumber++;
-					line = br.readLine();
+					//line = br.readLine();
 				}
 			}
 		}
