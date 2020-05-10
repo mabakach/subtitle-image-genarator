@@ -32,7 +32,7 @@ public class App {
 		options.addOption(PARAMETER_OUTPUT_PATH, true, "Path to output folder.");
 		options.addOption(PARAMETER_FONT_NAME, true, "Font name (optional, default is Arial Rounded)");
 		options.addOption(PARAMETER_FONT_SIZE, true, "Font size in pixel (optional, default is 48)");
-		options.addOption(PARAMETER_IMAGE_WIDTH, true, "Image width in pixel (optional, default is 1980)");
+		options.addOption(PARAMETER_IMAGE_WIDTH, true, "Image width in pixel (optional, default is 1920)");
 		options.addOption(PARAMETER_IMAGE_HEIGTH, true, "Image height in pixel (optional, default is 1080)");
 		options.addOption(PARAMETER_SUBTITLE_BAR_HEIGHT, true, "Sub title bar height in pixel (optional, default is 170)");
 		options.addOption(PARAMETER_HELP, false, "Print this help");
@@ -66,7 +66,7 @@ public class App {
 		// defaults
 		String fontName = "Arial Rounded";
 		int fontSize = 48;
-		int imageWidth = 1980;
+		int imageWidth = 1920;
 		int imageHeight = 1080;
 		int subtitleBarHeight = 170;
 		
